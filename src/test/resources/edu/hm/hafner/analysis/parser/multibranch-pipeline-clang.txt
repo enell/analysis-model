@@ -1,0 +1,6 @@
+[Build IOS] /path/workspace/task%2Fxxx-123/src/Handler.mm:10:22: warning: 'sendAsynchronousRequest:queue:completionHandler:' is deprecated: first deprecated in iOS 9.0 - Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h [-Wdeprecated-declarations]
+[Build IOS]     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+[Build IOS]                      ^
+[Build IOS] /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSURLConnection.h:450:1: note: 'sendAsynchronousRequest:queue:completionHandler:' has been explicitly marked deprecated here
+[Build IOS] + (void)sendAsynchronousRequest:(NSURLRequest*) request
+[Build IOS] ^

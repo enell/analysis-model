@@ -193,4 +193,25 @@ class ClangParserTest extends AbstractParserTest {
                     .hasSeverity(Severity.WARNING_NORMAL);
         });
     }
+
+    /**
+     * Parses a file with one warning that is run in a multibranch pipeline configuration.
+     */
+    @Test
+    void multibranchPipeline() {
+        Report warnings = parse("multibranch-pipeline-clang.txt");
+
+        assertThat(warnings).hasSize(1);
+
+        assertSoftly(softly -> {
+            softly.assertThat(warnings.get(0)).hasLineStart(10)
+                    .hasLineEnd(10)
+                    .hasColumnStart(22)
+                    .hasColumnEnd(22)
+                    .hasMessage("'sendAsynchronousRequest:queue:completionHandler:' is deprecated: first deprecated in iOS 9.0 - Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h")
+                    .hasFileName("/path/workspace/task%2Fxxx-123/src/Handler.mm")
+                    .hasCategory("-Wdeprecated-declarations")
+                    .hasSeverity(Severity.WARNING_NORMAL);
+        });
+    }
 }

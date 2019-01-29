@@ -16,8 +16,10 @@ import edu.hm.hafner.analysis.RegexpLineParser;
  */
 public class ClangParser extends RegexpLineParser {
     private static final long serialVersionUID = -3015592762345283182L;
+    private static final String FILEPATH_PATTERN = "((?:[^ !$`&*()+]|\\\\(?: |!|$|`|&|\\*|\\(|\\)|\\+))+?)";
 
-    private static final String CLANG_WARNING_PATTERN = "^\\s*(?:\\d+%)?([^%]*?):(\\d+):(?:(\\d+):)?" + "(?:"
+    private static final String CLANG_WARNING_PATTERN = "\\s*(?:\\d+%)?" + FILEPATH_PATTERN
+            + ":(\\d+):(?:(\\d+):)?" + "(?:"
             + "(?:\\{\\d+:\\d+-\\d+:\\d+\\})+:)?\\s*(warning|[^\\[\\]]*error):" + "\\s*(.*?)(?:\\[([^\\[]*)\\])?$";
     private static final Pattern IGNORE_FORMAT = Pattern.compile("^-\\[.*\\].*$");
 
